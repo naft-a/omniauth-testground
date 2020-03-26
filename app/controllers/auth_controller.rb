@@ -1,9 +1,11 @@
-class AuthController < ApplicationRecord
+require 'faraday'
+
+class AuthController < ApplicationController
   def callback
     authenticate_with(auth_hash.credentials.token)
     response = send_request(http_method: :get, endpoint: '/projects/afa/deployments')
 
-    render json: response
+    render json: response.body
   end
 
   private
@@ -17,9 +19,7 @@ class AuthController < ApplicationRecord
       request.headers['Content-Type'] = 'application/json' if http_method == :post
       request.headers['Accept'] = 'application/json'
       request.url endpoint
-      request.body params
-
-      config.adapter Faraday.default_adapter
+      request.body = params
     end
   end
 
