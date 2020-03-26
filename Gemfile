@@ -16,6 +16,12 @@ gem 'puma', '~> 4.1'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'faraday'
+gem 'faraday_middleware'
+gem 'omniauth'
+gem 'omniauth-atech', github: 'naft-a/omniauth-atech'
+gem 'simple_oauth'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
